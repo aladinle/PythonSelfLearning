@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ModulePythonApp", "ModulePythonApp\ModulePythonApp.pyproj", "{44D65671-E9B0-4B00-A4BE-6435BDBB8727}"
-EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "EmailSlicer", "EmailSlicer\EmailSlicer.pyproj", "{6FE37F52-6293-49F4-88FD-6228D4B8E256}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "NumberToWords", "NumberToWords\NumberToWords.pyproj", "{F645DFCD-2E95-4E0D-BE8A-4F6B16427722}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{44D65671-E9B0-4B00-A4BE-6435BDBB8727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44D65671-E9B0-4B00-A4BE-6435BDBB8727}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FE37F52-6293-49F4-88FD-6228D4B8E256}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6FE37F52-6293-49F4-88FD-6228D4B8E256}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F645DFCD-2E95-4E0D-BE8A-4F6B16427722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F645DFCD-2E95-4E0D-BE8A-4F6B16427722}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
