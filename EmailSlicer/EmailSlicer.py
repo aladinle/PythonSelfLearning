@@ -4,7 +4,7 @@
 # Simple Python app to get username and domain from an email
 # 07/28/2023: Trung - Add email validation
 #=====================================================================================
-import re
+import re 
 
 # Make a regular expression
 # for validating an Email
