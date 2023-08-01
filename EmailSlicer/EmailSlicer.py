@@ -54,11 +54,3 @@ if __name__ == "__main__":
         else:
             option = False
             break
-    
-    
-        
-
-
-
-
-
