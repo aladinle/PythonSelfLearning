@@ -1,0 +1,14 @@
+<div class="lyric-search">
+  <h2>Search Songs by Lyrics</h2>
+
+  <textarea [(ngModel)]="lyrics" placeholder="Enter lyrics..."></textarea>
+  <br />
+  <button (click)="search()">Search</button>
+
+  <div *ngIf="results.length > 0">
+    <h3>Results:</h3>
+    <ul>
+      <li *ngFor="let song of results">{{ song }}</li>
+    </ul>
+  </div>
+</div>

@@ -2,15 +2,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>6f220f00-42ca-4c10-a650-11566b8a2346</ProjectGuid>
+    <ProjectGuid>151d7b89-0bb5-4878-9e38-42a9f63ba6ea</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>weather_app.py</StartupFile>
+    <StartupFile>ChatterBotAI.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>PythonMastery</Name>
-    <RootNamespace>PythonMastery</RootNamespace>
+    <Name>ChatterBotAI</Name>
+    <RootNamespace>ChatterBotAI</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <InterpreterId>Global|PythonCore|3.11</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,30 +23,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="calculator.py" />
-    <Compile Include="ContactBook.py" />
-    <Compile Include="cracking_interview.py" />
-    <Compile Include="day2.py" />
-    <Compile Include="day1.py" />
-    <Compile Include="day3.py" />
-    <Compile Include="day4.py" />
-    <Compile Include="day5.py" />
-    <Compile Include="day6.py" />
-    <Compile Include="todo_CLIapp.py" />
-    <Compile Include="day_star_backend_python_broadcom.py" />
-    <Compile Include="FileBased_UserStorage.py" />
-    <Compile Include="Password_Generator.py" />
-    <Compile Include="Random_Password_Generator.py" />
-    <Compile Include="weather_app.py" />
-    <Compile Include="parser_iperf_log.py" />
-    <Compile Include="QuizGame.py" />
-    <Compile Include="Web1.py" />
+    <Compile Include="ChatterBotAI.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="build.log" />
-    <Content Include="Jenkins_pipeline.txt" />
-    <Content Include="quizes.json" />
-    <Content Include="sample_iperf.log" />
+    <InterpreterReference Include="Global|PythonCore|3.11" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Read Me.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
