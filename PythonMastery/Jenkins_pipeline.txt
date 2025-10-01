@@ -1,0 +1,195 @@
+2. Automation & CI/CD (Build/Test Pipelines)
+- Create parser.py
+- Assume a log file 'build.log' exists in the workspaces
+In parser.py:
+def parse_log(filepath):
+    with open(filepath, "r") as f:
+        errors = [line for line in f if "ERROR" in line or "FAIL" in line]
+
+    if errors:
+        print("Build FAILED. Issues found:")
+        for err in errors:
+            print("  ->", err.strip())
+    else:
+        print("Build SUCCESS")
+
+Usage: bash
+python parser.py build.log
+
+=> Jenkins pipeline script:
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'make clean && make'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'pytest tests/ --maxfail=1 --disable-warnings -q'
+            }
+        }
+        stage('Package') {
+            steps {
+                sh 'rpmbuild -ba driver.spec'
+            }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: '**/build.log', allowEmptyArchive: true
+        }
+    }
+}
+
+3. Linux & Build Systems
+a)  Build kernel module manually
+    make -C /lib/modules/$(uname -r)/build M=$PWD modules
+
+b) Insert / remove module
+    sudo insmod my_driver.ko
+    sudo rmmod my_driver
+    dmesg | tail -20
+
+c) Package into rpm
+    rpmbuild -ba driver.spec
+
+d) Check installed kernel headers
+    rpm -qa | grep kernel-headers
+
+4. Networking / PCIe Awareness
+a) List PCIe devices
+    lspci | grep -i ethernet
+b) Show NIC details
+    ethtool eth0
+c) Check link status
+    ip link show eth0
+d) Measure throughput
+    iperf3 -c <server_ip> -t 10
+e) Capture packets
+    sudo tcpdump -i eth0 -c 20
+
+
+
+Q (Abe): How would you automate NIC driver regression testing?
+A (You):
+“I’d write a Jenkins job that:
+
+Builds the driver.
+
+Deploys it to a test machine.
+
+Runs basic load/unload tests.
+
+Runs throughput tests using iperf3.
+
+Runs packet capture with tcpdump to verify data.
+
+Parses logs from dmesg and reports results.
+
+This way we catch regressions automatically for every driver update.”
+
+Simple declarative Jenkins pipeline example:
+pipeline {
+    agent any           # where to run the pipeline
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/example/driver-repo.git'
+            }
+        }
+
+        stage('Build Driver') {
+            steps {
+                sh '''
+                    make clean
+                    make                # runs make to compile a Linux driver (.ko file).
+                    mkdir -p artifacts
+                    cp *.ko artifacts/
+                '''
+            }
+            post {                  # always run after this stage. Here, it archives the .ko file so Jenkins saves it.
+                always {
+                    archiveArtifacts artifacts: 'artifacts/*.ko'
+                }
+            }
+        }
+
+        stage('Deploy & Load Driver') {
+            steps {
+                sh '''
+                    scp artifacts/*.ko user@test-machine:/tmp/                  # copies driver to a test machine (via scp).
+                    ssh user@test-machine "sudo insmod /tmp/driver.ko || true"  # Loads it with insmod
+                    ssh user@test-machine "lsmod | grep driver"                 # Verifies load with lsmod
+                '''
+            }
+        }
+
+        stage('Unload Test') {  # Ensures the driver unloads cleanly (important for stability testing).
+            steps {
+                sh 'ssh user@test-machine "sudo rmmod driver || true"'
+            }
+        }
+
+        stage('Throughput Test (iperf3)') {
+            steps {
+                sh '''
+                    ssh user@test-machine "iperf3 -s -D"                # Starts an iperf3 server on the test machine.
+                    sleep 2
+                    iperf3 -c test-machine -t 10 > artifacts/iperf.log  # Runs a client test for throughput. Saves results into artifacts/iperf.log
+
+                    # Extract throughput (last number before 'Mbits/sec')
+                    THROUGHPUT=$(grep -o "[0-9.]* Mbits/sec" artifacts/iperf.log | tail -1 | awk '{print $1}')
+                    echo "Measured throughput: $THROUGHPUT Mbits/sec"
+
+                    # Fail if below threshold (e.g., 900 Mbits/sec)
+                    if (( $(echo "$THROUGHPUT < 900" | bc -l) )); then
+                        echo "Throughput too low!"
+                        exit 1
+                    fi
+                '''
+            }
+        }
+
+        stage('Packet Capture') {   # Captures network traffic with tcpdump. Collects .pcap file for later analysis.
+            steps {
+                sh '''
+                    ssh user@test-machine "sudo timeout 15 tcpdump -i eth0 -w /tmp/test.pcap &"
+                    iperf3 -c test-machine -t 10
+                    scp user@test-machine:/tmp/test.pcap artifacts/
+                '''
+            }
+        }
+
+        stage('Check Logs') {    # grabs last 100 lines of kernel logs.
+            steps {
+                sh 'ssh user@test-machine "dmesg | tail -100" > artifacts/dmesg.log'
+
+                # Fail build if dmesg contains error/warning
+                if grep -iE "error|fail|warn" artifacts/dmesg.log; then
+                    echo "Kernel log contains errors!"
+                    exit 1
+                fi
+            }
+        }
+    }
+
+    post {          # saves logs, artifacts, and test results.
+        always {
+            archiveArtifacts artifacts: 'artifacts/**'
+            junit 'artifacts/*.xml' // if you convert results to JUnit XML
+        }
+    }
+}
+
+
+==========================================================
+
+How would you decide pass/fail from iperf logs?
+=> Answer: We parse the final summary line in iperf.log, which reports average throughput.
+In the example, the average throughput is 944 Mbits/sec. 
+For a 1 Gbps NIC, I’d define a threshold of about 900 Mbits/sec (90% of line rate). 
+Since 944 is above that threshold, this test passes. 
+If it dropped below the threshold, Jenkins would fail the build, catching performance regressions early
