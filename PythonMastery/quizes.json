@@ -1,0 +1,102 @@
+[
+  {
+    "question": "What is the capital of France?",
+    "options": [ "A) Berlin", "B) Madrid", "C) Paris", "D) Rome" ],
+    "answer": "C"
+  },
+  {
+    "question": "Which language is primarily used for web development?",
+    "options": [ "A) Python", "B) HTML", "C) C++", "D) Java" ],
+    "answer": "B"
+  },
+  {
+    "question": "What does CPU stand for?",
+    "options": [ "A) Central Process Unit", "B) Central Processing Unit", "C) Computer Personal Unit", "D) Central Performance Unit" ],
+    "answer": "B"
+  },
+  {
+    "question": "Which planet is known as the Red Planet?",
+    "options": [ "A) Earth", "B) Mars", "C) Jupiter", "D) Venus" ],
+    "answer": "B"
+  },
+  {
+    "question": "Who wrote 'Romeo and Juliet'?",
+    "options": [ "A) Charles Dickens", "B) William Shakespeare", "C) Mark Twain", "D) Jane Austen" ],
+    "answer": "B"
+  },
+  {
+    "question": "Which element has the chemical symbol 'O'?",
+    "options": [ "A) Oxygen", "B) Gold", "C) Osmium", "D) Silver" ],
+    "answer": "A"
+  },
+  {
+    "question": "What is the square root of 64?",
+    "options": [ "A) 6", "B) 7", "C) 8", "D) 9" ],
+    "answer": "C"
+  },
+  {
+    "question": "Which programming language uses indentation as syntax?",
+    "options": [ "A) Python", "B) C", "C) Java", "D) Ruby" ],
+    "answer": "A"
+  },
+  {
+    "question": "How many continents are there on Earth?",
+    "options": [ "A) 5", "B) 6", "C) 7", "D) 8" ],
+    "answer": "C"
+  },
+  {
+    "question": "Who is known as the father of computers?",
+    "options": [ "A) Alan Turing", "B) Charles Babbage", "C) Bill Gates", "D) Steve Jobs" ],
+    "answer": "B"
+  },
+  {
+    "question": "What is the boiling point of water in Celsius?",
+    "options": [ "A) 90°C", "B) 100°C", "C) 110°C", "D) 120°C" ],
+    "answer": "B"
+  },
+  {
+    "question": "Which gas do plants absorb from the atmosphere?",
+    "options": [ "A) Oxygen", "B) Carbon Dioxide", "C) Nitrogen", "D) Hydrogen" ],
+    "answer": "B"
+  },
+  {
+    "question": "Which country hosted the 2016 Summer Olympics?",
+    "options": [ "A) China", "B) Brazil", "C) UK", "D) Russia" ],
+    "answer": "B"
+  },
+  {
+    "question": "What is 15 × 12?",
+    "options": [ "A) 170", "B) 180", "C) 190", "D) 200" ],
+    "answer": "B"
+  },
+  {
+    "question": "In which year did the Titanic sink?",
+    "options": [ "A) 1910", "B) 1912", "C) 1914", "D) 1916" ],
+    "answer": "B"
+  },
+  {
+    "question": "Which is the smallest prime number?",
+    "options": [ "A) 0", "B) 1", "C) 2", "D) 3" ],
+    "answer": "C"
+  },
+  {
+    "question": "Who painted the Mona Lisa?",
+    "options": [ "A) Michelangelo", "B) Vincent Van Gogh", "C) Pablo Picasso", "D) Leonardo da Vinci" ],
+    "answer": "D"
+  },
+  {
+    "question": "What is the fastest land animal?",
+    "options": [ "A) Lion", "B) Cheetah", "C) Tiger", "D) Leopard" ],
+    "answer": "B"
+  },
+  {
+    "question": "Which ocean is the largest?",
+    "options": [ "A) Atlantic", "B) Indian", "C) Pacific", "D) Arctic" ],
+    "answer": "C"
+  },
+  {
+    "question": "What is the value of Pi up to two decimal places?",
+    "options": [ "A) 3.12", "B) 3.14", "C) 3.16", "D) 3.18" ],
+    "answer": "B"
+  }
+]
