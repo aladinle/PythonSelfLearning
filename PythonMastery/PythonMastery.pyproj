@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>6f220f00-42ca-4c10-a650-11566b8a2346</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>weather_app.py</StartupFile>
+    <StartupFile>FileBased_UserStorage.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
