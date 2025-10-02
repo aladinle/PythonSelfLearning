@@ -101,4 +101,3 @@ for text, action in link_actions.items():
     row += 1
 
 root.mainloop()
->>>>>>> f0961ba (Finish mini projects)
