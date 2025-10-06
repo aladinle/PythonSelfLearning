@@ -51,16 +51,65 @@ def login():
     messagebox.showerror("Error", "Invalid username or password!")
 
 def forgot_password_action(event=None):
-    messagebox.showinfo("Forgot Password", "Password reset feature coming soon!")
+    #messagebox.showinfo("Forgot Password", "Password reset feature coming soon!")
+    # Create new window
+    reset_window = tk.Toplevel(root)
+    reset_window.title("Reset Password")
+    reset_window.geometry("300x150")
+    tk.Label(reset_window, text="Username:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
+    reset_user = tk.Entry(reset_window)
+    reset_user.grid(row=0, column=1, padx=10, pady=5)
+    
+    tk.Label(reset_window, text="Password:").grid(row=1, column=0, padx=10, pady=5, sticky="e")
+    reset_pass = tk.Entry(reset_window, show="*")
+    reset_pass.grid(row=1, column=1, padx=10, pady=5)
+
+    tk.Label(reset_window, text="Confirm Password:").grid(row=2, column=0, padx=10, pady=5, sticky="e")
+    reset_confirmpass = tk.Entry(reset_window, show="*")
+    reset_confirmpass.grid(row=2, column=1, padx=10, pady=5)
+
+    def reset_action():
+        username = reset_user.get().strip()
+        new_pass = reset_pass.get().strip()
+        new_confirmpass = reset_confirmpass.get().strip()          
+                
+        if not username or not new_pass or not new_confirmpass:
+            messagebox.showerror("Error", "Fields cannot be empty!")
+            return
+
+        if new_pass != new_confirmpass:
+            messagebox.showerror("Error", "Password and Confirm Password mismatch!")
+            return
+
+        updated = False
+        lines = []
+        with open(FILENAME, "r") as f:
+            for line in f:
+                stored_user, stored_pass = line.strip().split(",")
+                if username == stored_user:
+                    lines.append(f"{username},{new_pass}\n")
+                    updated = True
+                else:
+                    lines.append(line)
+        if updated:
+            with open(FILENAME, "w") as f:
+                f.writelines(lines)
+            messagebox.showinfo("Success", "Password updated successfully!")
+            reset_window.destroy()
+        else:
+            messagebox.showerror("Error", "Username not found!")
+    tk.Button(reset_window, text="Reset Password", command=reset_action).grid(row=3, column=0, columnspan=2, pady=10)
+
 def help_action():
     messagebox.showinfo("Help Center", "Please call 1-800-333-4447 for help\nor email letrung87@gmail.com.")
+
 def contact_action():
     messagebox.showinfo("Contact Us", "Email: support@mysite.com")
 
 # -------------- tkinter UI -----------------
 root = tk.Tk()
 root.title("Login System")
-root.geometry("300x200")
+root.geometry("300x180")
 
 # Labels Username
 tk.Label(root, text="Username:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
