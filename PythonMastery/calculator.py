@@ -1,14 +1,4 @@
 # Build a calculator app.
-
-# Bonus Challenges (Day 7):
-
-# Build a calculator app.
-
-# Create a random password generator.
-
-# Scrape website titles with requests + BeautifulSoup.
-
-# Create a student management system (OOP + files).
 import tkinter as tk
 
 def click(button_text):

@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>6f220f00-42ca-4c10-a650-11566b8a2346</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>FileBased_UserStorage.py</StartupFile>
+    <StartupFile>Student Management System.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -30,6 +30,7 @@
     <Compile Include="day4.py" />
     <Compile Include="day5.py" />
     <Compile Include="day6.py" />
+    <Compile Include="Student Management System.py" />
     <Compile Include="todo_CLIapp.py" />
     <Compile Include="day_star_backend_python_broadcom.py" />
     <Compile Include="FileBased_UserStorage.py" />
