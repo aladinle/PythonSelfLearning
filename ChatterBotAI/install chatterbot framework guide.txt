@@ -1,0 +1,43 @@
+install chatterbot framework:
+Link: https://chatterbot.readthedocs.io/en/stable/tutorial.html
+
+1) 
+git clone https://github.com/gunthercox/ChatterBot.git 
+python setup.py install
+
+
+2) when see the error:
+  Message=module 'time' has no attribute 'clock'
+  Source=C:\Users\Trung Le\source\repos\PythonSelfLearning\ChatterBotAI\ChatterBotAI.py
+  StackTrace:
+  File "C:\Users\Trung Le\source\repos\PythonSelfLearning\ChatterBotAI\ChatterBotAI.py", line 5, in <module> (Current frame)
+    bot = ChatBot("TrungLeChatBot")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'time' has no attribute 'clock'
+
+Click Continue in VS to traceback to root cause
+here is line 264
+
+
+Open the file <Python-folder>\Lib\site-packages\sqlalchemy\util\compat.py Go to line 264 which states:
+
+
+if win32 or jython:
+    time_func = time.clock
+    
+else:
+    time_func = time.time
+
+Change it to:
+
+
+if win32 or jython:
+    #time_func = time.clock
+    pass
+else:
+    time_func = time.time
+
+=> Now chatbot is ready to run without error. When we run, we can see "Hello"
+
+
+3)

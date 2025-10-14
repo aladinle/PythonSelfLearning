@@ -1,0 +1,6 @@
+django>=3.2.14
+
+// run ng version fail
+// => cannot run ng new frontend because Powershell blocks CLI script by default
+// to remove blocking, run:
+// Set-ExecutionPolicy RemoteSigned -Scope CurrentUser

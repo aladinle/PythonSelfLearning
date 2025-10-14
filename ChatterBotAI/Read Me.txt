@@ -1,0 +1,17 @@
+﻿🧠 What You’ll Build
+🧾 Frontend: Angular UI for chatting with the bot.
+
+🧠 Backend: Node.js/Express server calling the OpenAI API (gpt-3.5-turbo).
+
+🤖 OpenAI integration: Real-time AI chat.
+
+1. Backend (Node.js + Express + OpenAI)
+📁 Folder: gpt-chat-backend
+Setup:
+mkdir gpt-chat-backend && cd gpt-chat-backend
+npm init -y
+npm install express cors dotenv openai
+
+.env:
+OPENAI_API_KEY=your_openai_api_key_here
+
