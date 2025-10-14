@@ -150,3 +150,4 @@ for text, action in link_actions.items():
     row += 1
 
 root.mainloop()
+# Build a simple login system with file-based user storage.
